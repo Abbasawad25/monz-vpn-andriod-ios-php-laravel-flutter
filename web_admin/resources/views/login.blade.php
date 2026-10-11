@@ -1,0 +1,76 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>NerdVPN Login Admin</title>
+        <link href="/css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-primary">
+        @if (\Session::has('error'))
+            @php
+                $emailErr = isset(session('error')["email"][0])?session('error')["email"][0]:null;
+                $passwordErr = isset(session('error')["password"])?session('error')["password"][0]:null;
+                $keyErr = isset(session('error')["key"][0])?session('error')["key"][0]:null;
+            @endphp
+        @endif
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-1">Login</h3></div>
+                                    <div class="card-body">
+                                        <form method="POST" action="">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputEmailAddress">Email</label>
+                                                <input name="email" class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" />
+                                            </div>
+                                            @if (isset($emailErr))
+                                                <div class="alert alert-danger">{{ $emailErr }}</div>
+                                            @endif
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="inputPassword">Password</label>
+                                                <input name="password" class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                            </div>
+                                            @if (isset($passwordErr))
+                                                <div class="alert alert-danger">{{ $passwordErr }}</div>
+                                            @endif
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="key">key</label>
+                                                <input name="key" class="form-control py-4" id="key" type="password" placeholder="Enter Key" />
+                                            </div>
+                                            @if (isset($keyErr))
+                                                <div class="alert alert-danger">{{ $keyErr }}</div>
+                                            @endif
+
+                                            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input name="remember" class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
+                                                        <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
+                                                    </div>
+                                                </div>
+                                                <input name="submit" value="Login" class="btn btn-primary" type="submit" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>
